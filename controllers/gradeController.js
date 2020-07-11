@@ -1,12 +1,6 @@
 import db from '../models/index.js';
 const logger = '../config/logger.js';
-import Grade, {
-  findMany,
-  findById,
-  findByIdAndUpdate,
-  findByIdAndRemove,
-  deleteMany,
-} from '../models/schema';
+import Grade from '../models/schema';
 
 const create = async (req, res) => {
   const grade = new Grade(req.body);
