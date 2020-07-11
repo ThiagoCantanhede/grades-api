@@ -1,5 +1,4 @@
 import { db } from '../models/index.js';
-//import Grade from '../models/schema';
 
 const schema = {
   name: {
@@ -27,7 +26,7 @@ const schema = {
   },
 };
 
-const Grade = model('grades', schema, 'grades');
+const Grade = db.mongoose.model('grades', schema, 'grades');
 
 const create = async (req, res) => {
   const grade = new Grade(req.body);
