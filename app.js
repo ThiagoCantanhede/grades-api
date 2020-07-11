@@ -7,7 +7,6 @@ import { db } from './models/index.js';
 
 (async () => {
   try {
-    console.log(url);
     await db.mongoose.connect(
       'mongodb+srv://thiagolopes:archer1612@cluster0.c85mx.gcp.mongodb.net/Desafio4?retryWrites=true&w=majority',
       {
