@@ -1,14 +1,14 @@
 import express from 'express';
-import { json, urlencoded } from 'body-parser';
+import bodyParser from 'body-parser';
 import cors from 'cors';
 
 import gradeRouter from './routes/gradeRouter.js';
-import { url, mongoose } from './models/index.js';
+import { db } from './models/index.js';
 
 (async () => {
   try {
     console.log(url);
-    await mongoose.connect(url, {
+    await db.mongoose.connect(db.url, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
@@ -23,8 +23,8 @@ import { url, mongoose } from './models/index.js';
 const app = express();
 
 //define o dominio de origem para consumo do servico
-app.use(json());
-app.use(urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: 'http://localhost:8080',
