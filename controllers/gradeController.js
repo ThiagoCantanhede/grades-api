@@ -49,7 +49,7 @@ const findAll = async (req, res) => {
     ? { name: { $regex: new RegExp(name), $options: 'i' } }
     : {};
   try {
-    const data = await findMany({ condition });
+    const data = await Grade.findMany({ condition });
     res.send(data);
     console.log(`GET /grade`);
   } catch (error) {
@@ -64,7 +64,7 @@ const findOne = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const data = await findById({ _id: id });
+    const data = await Grade.findById({ _id: id });
     res.send(data);
 
     console.log(`GET /grade - ${id}`);
@@ -82,7 +82,7 @@ const update = async (req, res) => {
   }
   const id = req.params.id;
   try {
-    await findByIdAndUpdate({ _id: id }, req.body, { new: true });
+    await Grade.findByIdAndUpdate({ _id: id }, req.body, { new: true });
     res.send({ message: 'Grade atualizado com sucesso' });
 
     console.log(`PUT /grade - ${id} - ${JSON.stringify(req.body)}`);
@@ -96,7 +96,7 @@ const remove = async (req, res) => {
   const id = req.params.id;
 
   try {
-    await findByIdAndRemove({ _id: id });
+    await Grade.findByIdAndRemove({ _id: id });
     res.send({ message: 'Grade excluido com sucesso' });
 
     console.log(`DELETE /grade - ${id}`);
@@ -112,7 +112,7 @@ const removeAll = async (req, res) => {
   const id = req.params.id;
 
   try {
-    await deleteMany();
+    await Grade.deleteMany();
     res.send({
       message: `Grades excluidos`,
     });
