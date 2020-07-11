@@ -1,6 +1,34 @@
 import db from '../models/index.js';
 const logger = '../config/logger.js';
-import Grade from '../models/schema';
+//import Grade from '../models/schema';
+
+const schema = {
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  subject: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  type: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  value: {
+    type: Number,
+    required: true,
+  },
+  lastModified: {
+    type: Date,
+    required: true,
+  },
+};
+
+const Grade = model('grades', schema, 'grades');
 
 const create = async (req, res) => {
   const grade = new Grade(req.body);
