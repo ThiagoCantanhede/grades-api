@@ -4,5 +4,5 @@ const db = {};
 db.mongoose = mongoose;
 db.url = process.env.MONGODB;
 
-export default db;
+export { db };
 //teste
