@@ -25,6 +25,6 @@ const schema = {
   },
 };
 
-const grades = model('grades', schema, 'grades');
+const Grade = model('grades', schema, 'grades');
 
-export default grades;
+export default Grade;
