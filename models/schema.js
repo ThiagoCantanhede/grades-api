@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import { model } from 'mongoose';
 const schema = {
   name: {
     type: String,
@@ -25,6 +25,6 @@ const schema = {
   },
 };
 
-const grades = mongoose.model('grades', schema, 'grades');
+const grades = model('grades', schema, 'grades');
 
-module.exports = grades;
+export default grades;

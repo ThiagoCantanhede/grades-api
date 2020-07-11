@@ -1,6 +1,12 @@
-const db = require('../models/index.js');
+import db from '../models/index.js';
 const logger = '../config/logger.js';
-const Grade = require('../models/schema');
+import Grade, {
+  findMany,
+  findById,
+  findByIdAndUpdate,
+  findByIdAndRemove,
+  deleteMany,
+} from '../models/schema';
 
 const create = async (req, res) => {
   const grade = new Grade(req.body);
@@ -23,7 +29,7 @@ const findAll = async (req, res) => {
     ? { name: { $regex: new RegExp(name), $options: 'i' } }
     : {};
   try {
-    const data = await Grade.findMany({ condition });
+    const data = await findMany({ condition });
     res.send(data);
     logger.info(`GET /grade`);
   } catch (error) {
@@ -38,7 +44,7 @@ const findOne = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const data = await Grade.findById({ _id: id });
+    const data = await findById({ _id: id });
     res.send(data);
 
     logger.info(`GET /grade - ${id}`);
@@ -56,7 +62,7 @@ const update = async (req, res) => {
   }
   const id = req.params.id;
   try {
-    await Grade.findByIdAndUpdate({ _id: id }, req.body, { new: true });
+    await findByIdAndUpdate({ _id: id }, req.body, { new: true });
     res.send({ message: 'Grade atualizado com sucesso' });
 
     logger.info(`PUT /grade - ${id} - ${JSON.stringify(req.body)}`);
@@ -70,7 +76,7 @@ const remove = async (req, res) => {
   const id = req.params.id;
 
   try {
-    await Grade.findByIdAndRemove({ _id: id });
+    await findByIdAndRemove({ _id: id });
     res.send({ message: 'Grade excluido com sucesso' });
 
     logger.info(`DELETE /grade - ${id}`);
@@ -86,7 +92,7 @@ const removeAll = async (req, res) => {
   const id = req.params.id;
 
   try {
-    await Grade.deleteMany();
+    await deleteMany();
     res.send({
       message: `Grades excluidos`,
     });
@@ -97,4 +103,4 @@ const removeAll = async (req, res) => {
   }
 };
 
-module.exports = { create, findAll, findOne, update, remove, removeAll };
+export default { create, findAll, findOne, update, remove, removeAll };

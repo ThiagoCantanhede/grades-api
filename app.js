@@ -1,15 +1,15 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+import express from 'express';
+import { json, urlencoded } from 'body-parser';
+import cors from 'cors';
 
-const gradeRouter = require('./routes/gradeRouter.js');
-const logger = require('./config/logger.js');
-const db = require('./models/index.js');
+import gradeRouter from './routes/gradeRouter.js';
+import logger from './config/logger.js';
+import { url, mongoose } from './models/index.js';
 
 (async () => {
   try {
-    console.log(db.url);
-    await db.mongoose.connect(db.url, {
+    console.log(url);
+    await mongoose.connect(url, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
@@ -24,8 +24,8 @@ const db = require('./models/index.js');
 const app = express();
 
 //define o dominio de origem para consumo do servico
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(json());
+app.use(urlencoded({ extended: true }));
 app.use(
   cors({
     origin: 'http://localhost:8080',

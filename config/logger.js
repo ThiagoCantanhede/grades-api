@@ -1,7 +1,7 @@
-const winston = require('winston');
-const winstondb = require('winston-mongodb');
+import winston, { format as _format } from 'winston';
+import winstondb from 'winston-mongodb';
 
-const { combine, timestamp, label, printf } = winston.format;
+const { combine, timestamp, label, printf } = _format;
 
 const { createLogger, transports, format } = winston;
 
@@ -31,4 +31,4 @@ const logger = createLogger({
   ),
 });
 
-module.exports = logger;
+export default logger;
