@@ -3,7 +3,6 @@ import { json, urlencoded } from 'body-parser';
 import cors from 'cors';
 
 import gradeRouter from './routes/gradeRouter.js';
-import logger from './config/logger.js';
 import { url, mongoose } from './models/index.js';
 
 (async () => {
