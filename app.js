@@ -8,10 +8,13 @@ import { db } from './models/index.js';
 (async () => {
   try {
     console.log(url);
-    await db.mongoose.connect(db.url, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await db.mongoose.connect(
+      'mongodb+srv://thiagolopes:archer1612@cluster0.c85mx.gcp.mongodb.net/Desafio4?retryWrites=true&w=majority',
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
+    );
     console.log('Conectado ao banco de dados');
   } catch (error) {
     console.log(`Erro ao conectar no banco de dados! ${error}`);
