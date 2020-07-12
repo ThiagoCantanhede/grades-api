@@ -50,7 +50,7 @@ const findAll = async (req, res) => {
     : {};
   console.log(condition);
   try {
-    const data = await Grade.find({ condition });
+    const data = await Grade.find({ name: name });
     res.send(data);
     console.log(`GET /grade`);
   } catch (error) {
