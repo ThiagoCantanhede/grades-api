@@ -49,7 +49,7 @@ const findAll = async (req, res) => {
     ? { name: { $regex: new RegExp(name), $options: 'i' } }
     : {};
   try {
-    const data = await Grade.findMany({ condition });
+    const data = await Grade.find({ condition });
     res.send(data);
     console.log(`GET /grade`);
   } catch (error) {
